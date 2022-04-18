@@ -21,13 +21,13 @@
                 . mysqli_connect_error());
         }
           
-        // Taking all 5 values from the form data(input)
+        // Taking all values from the form data(input)
         $username =  $_REQUEST['username'];
         $password = $_REQUEST['password'];
           
         // Performing insert query execution
         // here our table name is college
-        $select = mysqli_query($conn, "SELECT * FROM users WHERE username = '".$_POST['username']."' AND password = '".$_POST['password']."'");
+        $select = mysqli_query($conn, "SELECT * FROM customer WHERE CUSTOMER_ID = '".$_POST['username']."' AND Cust_pass = '".$_POST['password']."'");
         
         if(mysqli_num_rows($select)) {
             echo "This username already exists";
