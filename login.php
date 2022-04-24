@@ -30,16 +30,18 @@
         $select = mysqli_query($conn, "SELECT * FROM customer WHERE CUSTOMER = '".$_POST['username']."' AND Cust_pass = '".$_POST['password']."'");
         if(mysqli_num_rows($select)) {
             ob_start();
-	    header("Location: /test/customerView.php");
-	    ob_end_flush();
-	    exit;
+            header("Location: /test/customerView.php");
+            ob_end_flush();
+            exit;
         }
         else {
-	    $select = mysqli_query($conn, "SELECT * FROM emp_information WHERE Emp_ID = '".$_POST['username']."' AND Emp_pass = '".$_POST['password']."'");
+            $select = mysqli_query($conn, "SELECT * FROM emp_information WHERE Emp_ID = '".$_POST['username']."' AND Emp_pass = '".$_POST['password']."'");
             if(mysqli_num_rows($select)) {
-            	echo "Hello Employee!";
+                ob_start();
+                header("Location: /test/employeeMenu.html");
+                ob_end_flush();
             }
-	    else echo "No credentials matching input";
+            else echo "No credentials matching input";
         }
         // Close connection
         mysqli_close($conn);
