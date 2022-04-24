@@ -13,7 +13,7 @@
         // username => root
         // password => empty
         // database name => staff
-        $conn = mysqli_connect("localhost", "root", "", "warehouse");
+        $conn = mysqli_connect("localhost", "root", "", "warehouse_management");
           
         // Check connection
         if($conn === false){
@@ -28,7 +28,7 @@
           
         // Performing insert query execution
         // here our table name is college
-        $select = mysqli_query($conn, "SELECT * FROM customer WHERE CUSTOMER_ID = '".$_POST['username']."' AND Cust_pass = '".$_POST['password']."'");
+        $select = mysqli_query($conn, "SELECT * FROM customer WHERE Customer = '".$_POST['username']."' AND Cust_pass = '".$_POST['password']."'");
         
         if(mysqli_num_rows($select)) {
             ob_start();
