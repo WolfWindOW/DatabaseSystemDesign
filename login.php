@@ -8,7 +8,7 @@
 <body>
     <center>
         <?php
-  
+        session_start();
         // servername => localhost
         // username => root
         // password => empty
@@ -24,13 +24,17 @@
         // Taking all values from the form data(input)
         $username =  $_REQUEST['username'];
         $password = $_REQUEST['password'];
+        $_SESSION['username'] = $username;
           
         // Performing insert query execution
         // here our table name is college
         $select = mysqli_query($conn, "SELECT * FROM customer WHERE CUSTOMER_ID = '".$_POST['username']."' AND Cust_pass = '".$_POST['password']."'");
         
         if(mysqli_num_rows($select)) {
-            echo "This username already exists";
+            ob_start();
+            header("Location: /test/customerView.php");
+            ob_end_flush();
+            exit;
         }
         else {
             echo "No credentials matching input";
