@@ -2,15 +2,10 @@
 
 $conn = mysqli_connect("localhost", "root", "", "warehouse_management");
 
-$SKU = $_POST['SKU'];
-$Loc = $_POST['Loc'];
-$PA = $_POST['pallets_added'];
-
-//$query = ;
 $stmt = $conn->prepare("UPDATE location SET location.Pallet_count = location.Pallet_count + ? WHERE location.SKU = ? AND location.Location = ?");
-$stmt->bind_param("sss", $PA, $SKU, $Loc);
+$stmt->bind_param("sss", $_POST['pallets_added'], $_POST['SKU'], $_POST['Loc']);
 $stmt->execute();
-//$result = $conn->query($conn);
+
 
 $conn->close();
 ?>
