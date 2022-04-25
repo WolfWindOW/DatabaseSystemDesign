@@ -2,32 +2,34 @@
 <html>
   
 <head>
-    <title>Customer View Page page</title>
+    <title>Employee View page</title>
 </head>
 <body>
 	<center>
 		<?php
-			function customerView(){
+			function employeeView(){
 				session_start();
 				$conn = mysqli_connect("localhost", "root", "", "warehouse_management");
 				if($conn === false){
 					die("ERROR: Could not connect. " 
 						. mysqli_connect_error());
 				}
-				$select = mysqli_query($conn, "SELECT SKU, Pallet_count, Unit_count FROM product WHERE Customer = '".$_SESSION['username']."' ");
+				$SKU =  $_REQUEST['SKU'];
+				$select = mysqli_query($conn, "SELECT Location, Pallet_count, Loc_unit_count FROM location WHERE SKU = '".$_POST['SKU']."' ");
 				if (mysqli_num_rows($select) > 0) {
 				 // output data of each row
 				while($row = mysqli_fetch_assoc($select)) {
-					echo "SKU: " . $row["SKU"]. " - Pallet Count: " . $row["Pallet_count"]. " - Unit Count: " . $row["Unit_count"]. "<br>";
+					echo "Location: " . $row["Location"]. " - Pallet Count: " . $row["Pallet_count"]. " - Location Unit Count: " . $row["Loc_unit_count"]. "<br>";
 				}
 				} else {
 					echo "0 results";
 				}
 				$conn->close();
 			}
-			customerView();
+
+			employeeView();
+			
 		?>
-		
 	</center>
 </body>
   
