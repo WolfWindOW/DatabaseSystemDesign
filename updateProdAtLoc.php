@@ -12,6 +12,7 @@ $conn->close();
 
 <html>
    <body>
+      <p> Enter Requested Values. Enter a negative number for "Pallets Added" to remove stock from a location </p>
       
       <form action = "<?php $_PHP_SELF ?>" method = "POST">
          SKU: <input type = "text" name = "SKU" />
